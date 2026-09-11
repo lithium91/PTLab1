@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from src.main import get_path_from_arguments
+from src.main import get_path_from_arguments, get_reader
+from src.TextDataReader import TextDataReader
+from src.YAMLDataReader import YAMLDataReader
 import pytest
 
 
@@ -24,3 +26,13 @@ def test_get_path_from_noncorrect_arguments(
     with pytest.raises(SystemExit) as e:
         get_path_from_arguments(noncorrect_arguments_string[0])
     assert e.type == SystemExit
+
+
+@pytest.mark.parametrize("path", ["data.yaml", "data.yml", "DATA.YAML"])
+def test_get_reader_yaml(path: str) -> None:
+    assert type(get_reader(path)).__name__ == YAMLDataReader.__name__
+
+
+@pytest.mark.parametrize("path", ["data.txt", "data"])
+def test_get_reader_text(path: str) -> None:
+    assert type(get_reader(path)).__name__ == TextDataReader.__name__

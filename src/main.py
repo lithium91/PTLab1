@@ -3,6 +3,7 @@ import argparse
 import os
 import sys
 
+from CalcExcellentStudents import CalcExcellentStudents
 from CalcRating import CalcRating
 from DataReader import DataReader
 from TextDataReader import TextDataReader
@@ -33,6 +34,10 @@ def main():
 
     rating = CalcRating(students).calc()
     print("Rating: ", rating)
+
+    excellent = CalcExcellentStudents(students)
+    print("Excellent students: ", excellent.get_excellent_students())
+    print("Number of excellent students: ", excellent.calc())
 
 
 if __name__ == "__main__":

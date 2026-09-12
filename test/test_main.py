@@ -36,3 +36,16 @@ def test_get_reader_yaml(path: str) -> None:
 @pytest.mark.parametrize("path", ["data.txt", "data"])
 def test_get_reader_text(path: str) -> None:
     assert type(get_reader(path)).__name__ == TextDataReader.__name__
+
+
+def test_main_yaml(monkeypatch, capsys, tmpdir) -> None:
+    from src import main as main_module
+    p = tmpdir.join("data.yaml")
+    p.write_text("- Иванов Иван Иванович:\n    математика: 95\n"
+                 "    химия: 90\n- Петров Петр Петрович:\n"
+                 "    математика: 60\n", encoding='utf-8')
+    monkeypatch.setattr("sys.argv", ["main.py", "-p", str(p)])
+    main_module.main()
+    out = capsys.readouterr().out
+    assert "Number of excellent students:  1" in out
+    assert "Rating:" in out

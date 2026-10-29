@@ -1,6 +1,6 @@
 # Лабораторная 1 по дисциплине "Технологии программирования"
 
-![Testing the Python code](https://github.com/<username>/PTLab1/actions/workflows/github-actions-testing.yml/badge.svg)
+![Testing the Python code](https://github.com/lithium91/PTLab1/actions/workflows/github-actions-testing.yml/badge.svg)
 
 **Тема:** знакомство с системой контроля версий Git и инструментом CI/CD GitHub Actions.
 **Вариант:** 1 (формат входного файла — YAML; расчет количества студентов-отличников).
